@@ -14,5 +14,7 @@ get "/new" do
 end
 
 post "/new" do
-	erb "Hello world!"
+	content = params[:content]
+
+	erb "You typed #{content}"
 end
