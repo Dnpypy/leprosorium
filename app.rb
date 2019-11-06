@@ -12,3 +12,7 @@ get "/new" do
 	# добавляем загулшку для /new
 	erb :new
 end
+
+post "/new" do
+	erb "Hello world!"
+end
