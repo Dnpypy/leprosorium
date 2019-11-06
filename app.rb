@@ -9,5 +9,6 @@ get '/' do
 end
 
 get "/new" do
-	erb "Hello world"
+	# добавляем загулшку для /new
+	erb :new
 end
