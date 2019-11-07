@@ -73,6 +73,16 @@ post "/new" do
 		erb :new
 	end
 
+=begin
+	метод execute принимает два параметра
+	? - если мы хотим здесь чтото указать то указывает это в массиве []
+=end
+
+	@db.execute 'insert into Posts
+								(content, created_date)
+								 values (?, datetime())', [content]
+
+
 	erb "You typed #{content}"
 end
 
