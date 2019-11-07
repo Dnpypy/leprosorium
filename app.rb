@@ -51,12 +51,27 @@ get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
 end
 
+
+# Обработчик get-запроса /new
+# (браузер получает страницу с сервера)
 get "/new" do
 	erb :new
 end
 
+
+# Обработчик post-запроса /new
+# (браузер отправляет данные на сервер)
 post "/new" do
+	# Получаем переменную из post запроса
 	content = params[:content]
+
+	# <= покрывает все случаи, хотя отрицание тут никогда не будет
+	if content.length <= 0
+		@error = "Введите текст"
+
+		# Возвращаем нашу страницу заново
+		erb :new
+	end
 
 	erb "You typed #{content}"
 end
