@@ -48,7 +48,8 @@ end
 
 get '/' do
 	@title = "Leprosorium"
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
+
+	erb :index
 end
 
 
@@ -65,8 +66,16 @@ post "/new" do
 	# Получаем переменную из post запроса
 	content = params[:content]
 
-	# <= покрывает все случаи, хотя отрицание тут никогда не будет
-	if content.length <= 0
+	# # первый способ <= покрывает все случаи, хотя отрицание тут никогда не будет
+	# if content.length <= 0
+	# 	@error = "Введите текст"
+	#
+	# 	# Возвращаем нашу страницу заново
+	# 	erb :new
+	# end
+
+	# второй способ проверка, strip обрезает все лишнее, empty?(пустое ли?)
+	if content.strip.empty?
 		@error = "Введите текст"
 
 		# Возвращаем нашу страницу заново
@@ -76,6 +85,7 @@ post "/new" do
 =begin
 	метод execute принимает два параметра
 	? - если мы хотим здесь чтото указать то указывает это в массиве []
+  Сохранение данных в БД
 =end
 
 	@db.execute 'insert into Posts
