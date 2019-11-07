@@ -1,4 +1,4 @@
-Leprosorium.
+#Leprosorium.
 
 this folder github rubyschool-us: git clone https://github.com/rubyschool-us/sinatra-bootstrap-clean.git
 
