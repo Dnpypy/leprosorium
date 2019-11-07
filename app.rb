@@ -48,8 +48,12 @@ end
 
 get '/' do
 	@title = "Leprosorium"
+	# Выбираем список постов из БД, Desc впорядке убывания
+	# Глобальная переменная @results, буду к ней обращаться в представлении
+	@results = @db.execute 'SELECT * FROM Posts ORDER BY ID Desc'
 
 	erb :index
+
 end
 
 
