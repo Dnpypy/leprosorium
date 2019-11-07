@@ -50,7 +50,11 @@ get '/' do
 	@title = "Leprosorium"
 	# Выбираем список постов из БД, Desc впорядке убывания
 	# Глобальная переменная @results, буду к ней обращаться в представлении
-	@results = @db.execute 'SELECT * FROM Posts ORDER BY ID Desc'
+
+	# Пока файл не пустой? Отображаем содержимое, иначе пустое
+	unless "leprosorium.db".empty?
+		@results = @db.execute 'SELECT * FROM Posts ORDER BY ID Desc'
+	end
 
 	erb :index
 
