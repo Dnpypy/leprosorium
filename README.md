@@ -9,6 +9,9 @@ this folder github rubyschool-us: git clone https://github.com/rubyschool-us/sin
 
 	bundle install                   # To install sinatra bundle
 
-	bundle exec ruby app.rb          # To run the sample cmd window
+	bundle exec ruby app.rb          # To run the sample
 
 Then open http://localhost:4567/
+
+What next?
+==========

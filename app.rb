@@ -20,7 +20,8 @@ def init_db
 end
 
 before do
-
+	# before выполняется перед выполнением любого запроса метод init_db
+	init_db
 end
 
 get '/' do
