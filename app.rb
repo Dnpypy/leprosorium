@@ -100,7 +100,7 @@ post "/new" do
 								(content, created_date)
 								 values (?, datetime())', [content]
 
-
+	# перенаправление(redirect ) на главную страницу 
 	erb "You typed #{content}"
 end
 
