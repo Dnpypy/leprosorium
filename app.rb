@@ -19,9 +19,31 @@ def init_db
 	@db.results_as_hash = true
 end
 
+# before выполняется перед выполнением любого запроса метод init_db
 before do
-	# before выполняется перед выполнением любого запроса метод init_db
+  # init_db <--- тут инициализируется переменная @db
 	init_db
+end
+
+=begin
+Лучшее место, чтобы создавать таблицы метод configure
+метод configure срабатывает, когда происходит инициализация приложения
+инициализация приложения происходит, когда сохраняем файл
+и когда мы обновляем страницу
+=end
+
+configure do
+	# init_db <--- тут инициализируется переменная @db
+	init_db
+
+	# CREATE TABLE IF NOT EXISTS
+	# Условия, чтобы таблица каждый раз не пересоздавалась
+	@db.execute 'CREATE TABLE IF NOT EXISTS "Posts"
+	(
+		"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+		"created_date" DATE,
+		"content" TEXT
+		)'
 end
 
 get '/' do
@@ -30,7 +52,6 @@ get '/' do
 end
 
 get "/new" do
-	# добавляем загулшку для /new
 	erb :new
 end
 
@@ -38,4 +59,9 @@ post "/new" do
 	content = params[:content]
 
 	erb "You typed #{content}"
+end
+
+get "/contacts" do
+	# делаю заглушку для /contacts
+	erb "Контакты"
 end
