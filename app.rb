@@ -109,9 +109,17 @@ get "/contacts" do
 	erb "Контакты"
 end
 
-# вывод информации о посте
+# вывод информации о посте, получаем параметр из url
 get "/details/:post_id" do
 	post_id = params[:post_id]
 
-	erb "Displaying information for post with id #{post_id}"
+# Получение детали поста, все посты с определенным id будем передавать
+# Т.к id уникальный будет выбираться один пост
+# Запрос всегда будет один пост выбирать
+	results = @db.execute 'SELECT * FROM Posts WHERE id = ?', [post_id]
+# этот один пост добавляем в переменную @row, обращаемся по индексу 0
+	@row = results[0]
+
+	# возвращаем представление details.erb
+	erb :details
 end
