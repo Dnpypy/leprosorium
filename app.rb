@@ -100,11 +100,15 @@ post "/new" do
 								(content, created_date)
 								 values (?, datetime())', [content]
 
-	# перенаправление(redirect ) на главную страницу 
+	# перенаправление(redirect ) на главную страницу
 	erb "You typed #{content}"
 end
 
 get "/contacts" do
 	# делаю заглушку для /contacts
 	erb "Контакты"
+end
+
+get "/post/[:id]" do
+	"#{post['id']}"
 end
