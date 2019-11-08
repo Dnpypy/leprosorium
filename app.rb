@@ -110,6 +110,7 @@ get "/contacts" do
 end
 
 # вывод информации о посте, получаем параметр из url
+# Универсальный обработчик внизу страницы
 get "/details/:post_id" do
 	# Получаем переменную из url
 	post_id = params[:post_id]
@@ -123,4 +124,18 @@ get "/details/:post_id" do
 
 	# возвращаем представление details.erb
 	erb :details
+end
+
+# Универскальный post-обработчик запроса /details/...
+# Браузер отправляет данные на сервер,а мы их принимаем
+post "/details/:post_id" do
+	# Получаем переменную из url
+	post_id = params[:post_id]
+
+	# Получаем переменную из post запроса
+	content = params[:content]
+
+	# возвращаем erb
+	erb "You typed comment #{content} for post #{post_id}"
+
 end
